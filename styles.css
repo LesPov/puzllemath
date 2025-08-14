@@ -1,0 +1,438 @@
+/* Estilos Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #a855f7, #ec4899, #ef4444);
+    padding: 1rem;
+}
+
+.max-w-7xl {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    position: relative;
+    overflow: hidden;
+}
+
+.header-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed, #ec4899);
+    animation: gradient-x 15s ease infinite;
+}
+
+@keyframes gradient-x {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.header-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+.title-section h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+
+.stats-container {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+/* Contenido Principal */
+.content {
+    padding: 1.5rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.values-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.values-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title-dot.green {
+    background: #10b981;
+}
+
+.values-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.value-item {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #dcfce7, #d1fae5);
+    border: 2px solid #10b981;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.125rem;
+    cursor: move;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.matrix-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.matrix-title span {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #374151;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 0.125rem;
+    border: 1px solid;
+}
+
+.legend-color.correct {
+    background: #10b981;
+    border-color: #059669;
+}
+
+.legend-color.incorrect {
+    background: #ef4444;
+    border-color: #dc2626;
+}
+
+.legend-color.empty {
+    background: #d1d5db;
+    border-color: #9ca3af;
+    border-style: dashed;
+}
+
+.matrix-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.matrix-brackets {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.bracket-left {
+    position: absolute;
+    left: -0.75rem;
+    top: 0;
+    bottom: 0;
+    width: 0.75rem;
+    border-left: 4px solid #374151;
+    border-top: 2px solid #374151;
+    border-bottom: 2px solid #374151;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.bracket-right {
+    position: absolute;
+    right: -0.75rem;
+    top: 0;
+    bottom: 0;
+    width: 0.75rem;
+    border-right: 4px solid #374151;
+    border-top: 2px solid #374151;
+    border-bottom: 2px solid #374151;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.matrix-grid {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.5rem;
+}
+
+.matrix-cell {
+    width: 5rem;
+    height: 5rem;
+    border: 2px solid;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.matrix-cell.correct {
+    background: #dcfce7;
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.matrix-cell.incorrect {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.matrix-cell.empty {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    border-style: dashed;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.success-message {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #dcfce7, #d1fae5);
+    border-radius: 0.75rem;
+    border: 2px solid #10b981;
+    margin: 1.5rem 0;
+}
+
+.hint-section {
+    background: linear-gradient(135deg, #fef3c7, #fed7aa);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 2px solid #f59e0b;
+    margin: 1.5rem 0;
+}
+
+.instructions {
+    background: linear-gradient(135deg, #f9fafb, #f1f5f9);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    margin: 1.5rem 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Sección de Pregunta */
+.question-section {
+    background: linear-gradient(135deg, #fef3c7, #fcd34d);
+    border: 2px solid #f59e0b;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+#question-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #b45309;
+    margin-bottom: 0.5rem;
+}
+
+#question-description {
+    font-size: 1.25rem;
+    color: #92400e;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 1rem;
+}
+
+.question-matrix-display {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem auto 0 auto;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 0.75rem;
+}
+
+.q-bracket-left,
+.q-bracket-right {
+    font-size: 4rem;
+    font-weight: 100;
+    color: #92400e;
+}
+
+.q-grid {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.q-cell {
+    width: 3rem;
+    height: 3rem;
+    background: white;
+    border: 2px solid #f59e0b;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #b45309;
+}
+
+/* ========================================================= */
+/* NUEVO: Estilo para el texto de la transformación simbólica */
+/* ========================================================= */
+.question-transformation-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: #92400e;
+    margin-top: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .matrix-cell {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1rem;
+    }
+
+    .value-item {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1rem;
+    }
+
+    #question-title {
+        font-size: 1.5rem;
+    }
+
+    #question-description {
+        font-size: 1.1rem;
+    }
+
+    .q-cell {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+
+    .q-bracket-left,
+    .q-bracket-right {
+        font-size: 3rem;
+    }
+
+    .question-transformation-text {
+        font-size: 1rem;
+    }
+}
