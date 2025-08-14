@@ -1,49 +1,15 @@
 // ===============================================
-// BANCO DE PREGUNTAS MASIVO Y LÓGICO
+// BANCO DE PREGUNTAS MASIVO Y LÓGICO (VERSIÓN MEJORADA)
 // ===============================================
 const PUZZLES = [
-    // === CATEGORÍA: MATRIZ DE UNA TRANSFORMACIÓN LINEAL ===
-    {
-        title: "Matriz de una Transformación (2x2)",
-        stage1: {
-            description: "Encuentra la matriz estándar de la transformación lineal T(x, y) = (x + 3y, 2x - y).",
-            matrixSize: { rows: 2, cols: 2 },
-            correctMatrix: [["1", "3"], ["2", "-1"]],
-            givenValues: ["1", "3", "2", "-1"],
-            explanation: "La primera columna es T(1,0) = (1, 2). La segunda columna es T(0,1) = (3, -1)."
-        },
-        stage2: {
-            description: "La transformación que acabas de representar, ¿es lineal?",
-            transformationText: "T(x, y) = (x + 3y, 2x - y)",
-            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
-            explanation: "Sí, es lineal. No tiene términos constantes, potencias ni productos entre variables."
-        }
-    },
-    {
-        title: "Matriz de una Proyección (3x3)",
-        stage1: {
-            description: "Encuentra la matriz estándar de la transformación T: R³ → R³ que proyecta un vector sobre el plano XY.",
-            matrixSize: { rows: 3, cols: 3 },
-            correctMatrix: [["1", "0", "0"], ["0", "1", "0"], ["0", "0", "0"]],
-            givenValues: ["1", "0", "0", "0", "1", "0", "0", "0", "0"],
-            explanation: "La proyección de (x,y,z) sobre el plano XY es (x,y,0). T(1,0,0)=(1,0,0), T(0,1,0)=(0,1,0), T(0,0,1)=(0,0,0)."
-        },
-        stage2: {
-            description: "La operación de proyección, ¿es una transformación lineal?",
-            transformationText: "T(x,y,z) = (x,y,0)",
-            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
-            explanation: "Sí, las proyecciones ortogonales son transformaciones lineales clásicas."
-        }
-    },
-
-    // === CATEGORÍA: MATRIZ TRANSPUESTA ===
+  
     {
         title: "Matriz Transpuesta (2x3 → 3x2)",
         stage1: {
             description: "Dada la matriz A = [[1, 2, 3], [4, 5, 6]], construye su transpuesta Aᵀ.",
             matrixSize: { rows: 3, cols: 2 },
             correctMatrix: [["1", "4"], ["2", "5"], ["3", "6"]],
-            givenValues: ["1", "4", "2", "5", "3", "6"],
+            givenValues: ["1", "4", "2", "5", "3", "6", "0"],
             explanation: "La transpuesta Aᵀ se obtiene intercambiando las filas por las columnas de la matriz A."
         },
         stage2: {
@@ -54,19 +20,19 @@ const PUZZLES = [
         }
     },
     {
-        title: "Matriz Transpuesta (3x3)",
+        title: "Traza de una Matriz (3x3)",
         stage1: {
-            description: "Dada la matriz A = [[-1, 0, 5], [2, 1, -2], [3, 4, 0]], construye su transpuesta Aᵀ.",
-            matrixSize: { rows: 3, cols: 3 },
-            correctMatrix: [["-1", "2", "3"], ["0", "1", "4"], ["5", "-2", "0"]],
-            givenValues: ["-1", "2", "3", "0", "1", "4", "5", "-2", "0"],
-            explanation: "La diagonal principal (-1, 1, 0) permanece en su lugar, y los otros elementos se reflejan a través de ella."
+            description: "Calcula la traza (Tr) de la matriz A = [[-2, 9, 1], [0, 5, 8], [7, 4, 3]].",
+            matrixSize: { rows: 1, cols: 1 },
+            correctMatrix: [["6"]],
+            givenValues: ["6", "10", "1", "35"],
+            explanation: "La traza es la suma de los elementos de la diagonal principal: (-2) + 5 + 3 = 6."
         },
         stage2: {
-            description: "La operación de transposición, T(A) = Aᵀ, ¿es una transformación lineal?",
-            transformationText: "T(A) = Aᵀ",
+            description: "La operación T(A) = Tr(A), que mapea una matriz a un escalar, ¿es una transformación lineal?",
+            transformationText: "T(A) = Tr(A)",
             matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
-            explanation: "Sí, la operación de transposición es un ejemplo clásico de una transformación lineal entre espacios de matrices."
+            explanation: "Sí es lineal, ya que Tr(A+B) = Tr(A) + Tr(B) y Tr(cA) = c * Tr(A)."
         }
     },
 
@@ -74,17 +40,17 @@ const PUZZLES = [
     {
         title: "Suma de Matrices (2x2)",
         stage1: {
-            description: "Calcula el resultado de A + B, donde A=[[1, -2], [3, 0]] y B=[[4, 2], [-1, 5]].",
+            description: "Calcula A + B, donde A=[[1, -2], [3, 0]] y B=[[4, 2], [-1, 5]].",
             matrixSize: { rows: 2, cols: 2 },
             correctMatrix: [["5", "0"], ["2", "5"]],
-            givenValues: ["5", "0", "2", "5"],
-            explanation: "La suma de matrices se realiza sumando los elementos correspondientes de cada posición."
+            givenValues: ["5", "0", "2", "5", "3", "8"],
+            explanation: "La suma se realiza sumando los elementos en la misma posición: 1+4=5, -2+2=0, etc."
         },
         stage2: {
-            description: "La operación T(A) = A + B (con B fija), ¿es una transformación lineal?",
+            description: "La operación T(A) = A + B (con B fija y no nula), ¿es una transformación lineal?",
             transformationText: "T(A) = A + B",
             matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["No"]], givenValues: ["Sí", "No"],
-            explanation: "No es lineal. Sumar una matriz constante B (si B no es la matriz nula) es una traslación, y T(0) = B ≠ 0."
+            explanation: "No es lineal. Una transformación lineal debe mapear el vector cero al vector cero. Aquí, T(0) = 0 + B = B, que no es la matriz cero."
         }
     },
     {
@@ -103,8 +69,40 @@ const PUZZLES = [
             explanation: "Sí, es lineal. Cumple T(A+B) = 3(A+B) = 3A+3B = T(A)+T(B) y T(cA) = 3(cA) = c(3A) = cT(A)."
         }
     },
+    {
+        title: "Multiplicación de Matrices (2x2)",
+        stage1: {
+            description: "Calcula A * B, donde A = [[2, 1], [0, 3]] y B = [[1, -1], [4, 0]].",
+            matrixSize: { rows: 2, cols: 2 },
+            correctMatrix: [["6", "-2"], ["12", "0"]],
+            givenValues: ["6", "-2", "12", "0", "3", "1"],
+            explanation: "El elemento (i, j) del resultado es el producto punto de la fila i de A con la columna j de B."
+        },
+        stage2: {
+            description: "La operación T(A) = A * B (con B fija), ¿es una transformación lineal?",
+            transformationText: "T(A) = A * B",
+            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
+            explanation: "Sí, es lineal porque la multiplicación de matrices es distributiva y asociativa con escalares."
+        }
+    },
 
-    // === CATEGORÍA: DETERMINANTE (REVISADO CON LÓGICA) ===
+    // === CATEGORÍA: TRANSFORMACIONES LINEALES Y DETERMINANTES ===
+    {
+        title: "Matriz de una Transformación (2x2)",
+        stage1: {
+            description: "Encuentra la matriz estándar de la transformación lineal T(x, y) = (x + 3y, 2x - y).",
+            matrixSize: { rows: 2, cols: 2 },
+            correctMatrix: [["1", "3"], ["2", "-1"]],
+            givenValues: ["1", "3", "2", "-1", "0"],
+            explanation: "La primera columna es T(1,0) = (1, 2). La segunda columna es T(0,1) = (3, -1)."
+        },
+        stage2: {
+            description: "La transformación que acabas de representar, ¿es lineal?",
+            transformationText: "T(x, y) = (x + 3y, 2x - y)",
+            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
+            explanation: "Sí, es lineal. Se puede representar con una matriz y no tiene términos constantes, potencias ni productos entre variables."
+        }
+    },
     {
         title: "Determinante (2x2)",
         stage1: {
@@ -121,38 +119,20 @@ const PUZZLES = [
             explanation: "No es lineal. No cumple la aditividad (det(A+B) ≠ det(A)+det(B)) ni la homogeneidad para matrices n x n (det(cA) = cⁿdet(A))."
         }
     },
-
-    // === CATEGORÍA: MATRICES GRANDES Y CONCEPTOS AVANZADOS ===
     {
-        title: "Matriz Identidad (4x4)",
+        title: "Matriz Inversa (2x2)",
         stage1: {
-            description: "Construye la matriz identidad I₄ de tamaño 4x4.",
-            matrixSize: { rows: 4, cols: 4 },
-            correctMatrix: [["1", "0", "0", "0"], ["0", "1", "0", "0"], ["0", "0", "1", "0"], ["0", "0", "0", "1"]],
-            givenValues: ["1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1"],
-            explanation: "La matriz identidad tiene 1s en su diagonal principal y 0s en todas las demás posiciones."
+            description: "Calcula la inversa de la matriz A = [[5, 3], [3, 2]].",
+            matrixSize: { rows: 2, cols: 2 },
+            correctMatrix: [["2", "-3"], ["-3", "5"]],
+            givenValues: ["2", "-3", "-3", "5", "1", "0"],
+            explanation: "Para una matriz 2x2, A⁻¹ = (1/det(A)) * [[d, -b], [-c, a]]. Aquí el determinante es 1."
         },
         stage2: {
-            description: "La transformación T(v) = I₄v (multiplicar por la identidad), ¿es lineal?",
-            transformationText: "T(v) = Iv",
-            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
-            explanation: "Sí, es la transformación lineal más fundamental. Simplemente mapea cada vector a sí mismo (T(v)=v)."
-        }
-    },
-    {
-        title: "Matriz Diagonal (3x3)",
-        stage1: {
-            description: "Construye una matriz diagonal D con los valores 5, -2, 3 en la diagonal.",
-            matrixSize: { rows: 3, cols: 3 },
-            correctMatrix: [["5", "0", "0"], ["0", "-2", "0"], ["0", "0", "3"]],
-            givenValues: ["5", "0", "0", "0", "-2", "0", "0", "0", "3"],
-            explanation: "Una matriz diagonal tiene valores distintos de cero únicamente en su diagonal principal."
-        },
-        stage2: {
-            description: "La transformación T(v) = Dv, donde D es la matriz diagonal que construiste, ¿es lineal?",
-            transformationText: "T(v) = Dv",
-            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
-            explanation: "Sí, cualquier multiplicación por una matriz (sea diagonal o no) representa una transformación lineal."
+            description: "La operación T(A) = A⁻¹, ¿es una transformación lineal?",
+            transformationText: "T(A) = A⁻¹",
+            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["No"]], givenValues: ["Sí", "No"],
+            explanation: "No es lineal. Por ejemplo, en general (A+B)⁻¹ no es igual a A⁻¹ + B⁻¹."
         }
     },
 ];
@@ -234,7 +214,6 @@ function resetCurrentStage() {
 // ===============================================
 // FUNCIONES DE UI Y EVENTOS (Sin cambios)
 // ===============================================
-
 function renderDisplayMatrix(matrixData, container) {
     const rows = matrixData.length, cols = matrixData[0].length;
     let gridHTML = matrixData.map(row => row.map(cell => `<div class="q-cell">${cell}</div>`).join('')).join('');
