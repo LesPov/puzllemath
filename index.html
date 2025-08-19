@@ -53,8 +53,13 @@
                     <!-- Sección de Pregunta Principal -->
                     <div class="question-section" id="question-section">
                         <h2 id="question-title">Cargando Pregunta...</h2>
-                        <div id="question-matrix-display" class="question-matrix-display"></div>
-                        <!-- NUEVO ELEMENTO PARA MOSTRAR LA FÓRMULA SIMBÓLICA -->
+                        
+                        <!-- Contenedor para la matriz de resultado (Etapa 2) -->
+                        <div id="question-matrix-display" class="question-matrix-display hidden"></div>
+                        
+                        <!-- NUEVO: Contenedor para mostrar las matrices del enunciado (A, B, etc.) -->
+                        <div id="question-operands-display" class="question-operands-display"></div>
+
                         <p id="question-transformation-text" class="question-transformation-text hidden"></p>
                         <p id="question-description" class="question-description">Cargando...</p>
                     </div>

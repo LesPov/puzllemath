@@ -1,12 +1,14 @@
 // ===============================================
-// BANCO DE PREGUNTAS MASIVO Y LÓGICO (VERSIÓN MEJORADA)
+// BANCO DE PREGUNTAS MEJORADO
 // ===============================================
 const PUZZLES = [
-  
     {
         title: "Matriz Transpuesta (2x3 → 3x2)",
         stage1: {
-            description: "Dada la matriz A = [[1, 2, 3], [4, 5, 6]], construye su transpuesta Aᵀ.",
+            description: "Dada la matriz A, construye su transpuesta Aᵀ.",
+            operands: [
+                { type: 'matrix', label: 'A', data: [['1', '2', '3'], ['4', '5', '6']] }
+            ],
             matrixSize: { rows: 3, cols: 2 },
             correctMatrix: [["1", "4"], ["2", "5"], ["3", "6"]],
             givenValues: ["1", "4", "2", "5", "3", "6", "0"],
@@ -22,7 +24,10 @@ const PUZZLES = [
     {
         title: "Traza de una Matriz (3x3)",
         stage1: {
-            description: "Calcula la traza (Tr) de la matriz A = [[-2, 9, 1], [0, 5, 8], [7, 4, 3]].",
+            description: "Calcula la traza (Tr) de la siguiente matriz A.",
+            operands: [
+                { type: 'matrix', label: 'A', data: [['-2', '9', '1'], ['0', '5', '8'], ['7', '4', '3']] }
+            ],
             matrixSize: { rows: 1, cols: 1 },
             correctMatrix: [["6"]],
             givenValues: ["6", "10", "1", "35"],
@@ -35,12 +40,15 @@ const PUZZLES = [
             explanation: "Sí es lineal, ya que Tr(A+B) = Tr(A) + Tr(B) y Tr(cA) = c * Tr(A)."
         }
     },
-
-    // === CATEGORÍA: OPERACIONES ENTRE MATRICES ===
     {
         title: "Suma de Matrices (2x2)",
         stage1: {
-            description: "Calcula A + B, donde A=[[1, -2], [3, 0]] y B=[[4, 2], [-1, 5]].",
+            description: "Calcula el resultado de A + B.",
+            operands: [
+                { type: 'matrix', label: 'A', data: [['1', '-2'], ['3', '0']] },
+                { type: 'symbol', value: '+' },
+                { type: 'matrix', label: 'B', data: [['4', '2'], ['-1', '5']] }
+            ],
             matrixSize: { rows: 2, cols: 2 },
             correctMatrix: [["5", "0"], ["2", "5"]],
             givenValues: ["5", "0", "2", "5", "3", "8"],
@@ -56,7 +64,11 @@ const PUZZLES = [
     {
         title: "Multiplicación por Escalar (2x3)",
         stage1: {
-            description: "Calcula el resultado de 3A, donde A = [[1, 0, -2], [3, 1, 4]].",
+            description: "Calcula el resultado de 3A.",
+            operands: [
+                { type: 'symbol', value: '3' },
+                { type: 'matrix', label: 'A', data: [['1', '0', '-2'], ['3', '1', '4']] }
+            ],
             matrixSize: { rows: 2, cols: 3 },
             correctMatrix: [["3", "0", "-6"], ["9", "3", "12"]],
             givenValues: ["3", "0", "-6", "9", "3", "12"],
@@ -72,7 +84,12 @@ const PUZZLES = [
     {
         title: "Multiplicación de Matrices (2x2)",
         stage1: {
-            description: "Calcula A * B, donde A = [[2, 1], [0, 3]] y B = [[1, -1], [4, 0]].",
+            description: "Calcula el producto A * B.",
+            operands: [
+                { type: 'matrix', label: 'A', data: [['2', '1'], ['0', '3']] },
+                { type: 'symbol', value: '×' },
+                { type: 'matrix', label: 'B', data: [['1', '-1'], ['4', '0']] }
+            ],
             matrixSize: { rows: 2, cols: 2 },
             correctMatrix: [["6", "-2"], ["12", "0"]],
             givenValues: ["6", "-2", "12", "0", "3", "1"],
@@ -85,28 +102,13 @@ const PUZZLES = [
             explanation: "Sí, es lineal porque la multiplicación de matrices es distributiva y asociativa con escalares."
         }
     },
-
-    // === CATEGORÍA: TRANSFORMACIONES LINEALES Y DETERMINANTES ===
-    {
-        title: "Matriz de una Transformación (2x2)",
-        stage1: {
-            description: "Encuentra la matriz estándar de la transformación lineal T(x, y) = (x + 3y, 2x - y).",
-            matrixSize: { rows: 2, cols: 2 },
-            correctMatrix: [["1", "3"], ["2", "-1"]],
-            givenValues: ["1", "3", "2", "-1", "0"],
-            explanation: "La primera columna es T(1,0) = (1, 2). La segunda columna es T(0,1) = (3, -1)."
-        },
-        stage2: {
-            description: "La transformación que acabas de representar, ¿es lineal?",
-            transformationText: "T(x, y) = (x + 3y, 2x - y)",
-            matrixSize: { rows: 1, cols: 1 }, correctMatrix: [["Sí"]], givenValues: ["Sí", "No"],
-            explanation: "Sí, es lineal. Se puede representar con una matriz y no tiene términos constantes, potencias ni productos entre variables."
-        }
-    },
     {
         title: "Determinante (2x2)",
         stage1: {
-            description: "Calcula el determinante de la matriz A = [[5, 2], [8, 6]].",
+            description: "Calcula el determinante de la matriz A.",
+            operands: [
+                { type: 'matrix', label: 'A', data: [['5', '2'], ['8', '6']] }
+            ],
             matrixSize: { rows: 1, cols: 1 },
             correctMatrix: [["14"]],
             givenValues: ["14", "46", "-14", "22"],
@@ -122,7 +124,10 @@ const PUZZLES = [
     {
         title: "Matriz Inversa (2x2)",
         stage1: {
-            description: "Calcula la inversa de la matriz A = [[5, 3], [3, 2]].",
+            description: "Calcula la inversa de la matriz A.",
+             operands: [
+                { type: 'matrix', label: 'A', data: [['5', '3'], ['3', '2']] }
+            ],
             matrixSize: { rows: 2, cols: 2 },
             correctMatrix: [["2", "-3"], ["-3", "5"]],
             givenValues: ["2", "-3", "-3", "5", "1", "0"],
@@ -137,12 +142,10 @@ const PUZZLES = [
     },
 ];
 
-// Variables globales (sin cambios)
+// Variables globales
 let currentPuzzle = null, currentStage = 1, userMatrix = [], availableValues = [], draggedValue = null, score = 0, attempts = 0, isComplete = false, cellValidation = [];
 
-// ===============================================
-// LÓGICA PRINCIPAL DEL JUEGO (Sin cambios)
-// ===============================================
+// Lógica principal del juego
 function generateNewPuzzle() {
     currentPuzzle = PUZZLES[Math.floor(Math.random() * PUZZLES.length)];
     currentStage = 1; isComplete = false; attempts = 0;
@@ -153,25 +156,32 @@ function generateNewPuzzle() {
 function setupStage(stage) {
     const stageData = currentPuzzle[`stage${stage}`];
     const questionMatrixDisplay = document.getElementById('question-matrix-display');
+    const operandsContainer = document.getElementById('question-operands-display');
     const transformationTextElem = document.getElementById('question-transformation-text');
-    const stageCount = currentPuzzle.stage2 ? 2 : 1;
+    const stageCount = Object.keys(currentPuzzle).filter(k => k.startsWith('stage')).length;
 
     document.getElementById("question-title").textContent = `${currentPuzzle.title} (Etapa ${stage}/${stageCount})`;
     document.getElementById("question-description").textContent = stageData.description;
 
-    if (stage === 2) {
+    // Limpiar contenedores
+    operandsContainer.innerHTML = '';
+    questionMatrixDisplay.innerHTML = '';
+    questionMatrixDisplay.classList.add('hidden');
+    operandsContainer.classList.add('hidden');
+    transformationTextElem.classList.add('hidden');
+
+    if (stage === 1 && stageData.operands) {
+        operandsContainer.classList.remove('hidden');
+        renderOperands(stageData.operands, operandsContainer);
+    } else if (stage === 2) {
+        questionMatrixDisplay.classList.remove('hidden');
         renderDisplayMatrix(currentPuzzle.stage1.correctMatrix, questionMatrixDisplay);
         if (stageData.transformationText) {
             transformationTextElem.textContent = stageData.transformationText;
             transformationTextElem.classList.remove('hidden');
-        } else {
-            transformationTextElem.classList.add('hidden');
         }
-    } else {
-        questionMatrixDisplay.innerHTML = '';
-        transformationTextElem.classList.add('hidden');
     }
-
+    
     userMatrix = Array(stageData.matrixSize.rows).fill(null).map(() => Array(stageData.matrixSize.cols).fill(""));
     cellValidation = Array(stageData.matrixSize.rows).fill(null).map(() => Array(stageData.matrixSize.cols).fill("empty"));
     availableValues = [...stageData.givenValues].sort(() => Math.random() - 0.5);
@@ -193,7 +203,8 @@ function validateMatrix() {
     }
 
     if (allFilled && allCorrect) {
-        if (currentStage === 1 && currentPuzzle.stage2) {
+        const hasStage2 = !!currentPuzzle.stage2;
+        if (currentStage === 1 && hasStage2) {
             showSuccessMessage("¡Etapa 1 completada!", "Ahora, la pregunta de análisis...");
             currentStage = 2;
             setTimeout(() => { hideMessages(); setupStage(2); }, 2500);
@@ -211,9 +222,33 @@ function resetCurrentStage() {
     setupStage(currentStage);
 }
 
-// ===============================================
-// FUNCIONES DE UI Y EVENTOS (Sin cambios)
-// ===============================================
+// Funciones de UI y Eventos
+function renderOperands(operands, container) {
+    operands.forEach(op => {
+        if (op.type === 'matrix') {
+            const item = document.createElement('div');
+            item.className = 'operand-item';
+            
+            const label = document.createElement('div');
+            label.className = 'operand-label';
+            label.textContent = `${op.label} =`;
+            item.appendChild(label);
+
+            const matrixDisplay = document.createElement('div');
+            matrixDisplay.className = 'question-matrix-display visual-operand';
+            renderDisplayMatrix(op.data, matrixDisplay);
+            item.appendChild(matrixDisplay);
+            
+            container.appendChild(item);
+        } else if (op.type === 'symbol') {
+            const symbol = document.createElement('div');
+            symbol.className = 'operand-label';
+            symbol.textContent = op.value;
+            container.appendChild(symbol);
+        }
+    });
+}
+
 function renderDisplayMatrix(matrixData, container) {
     const rows = matrixData.length, cols = matrixData[0].length;
     let gridHTML = matrixData.map(row => row.map(cell => `<div class="q-cell">${cell}</div>`).join('')).join('');
@@ -291,23 +326,30 @@ function handleDragOver(e) { e.preventDefault(); }
 function handleDrop(e) {
     e.preventDefault();
     if (isComplete || !draggedValue) return;
-    const row = parseInt(e.target.dataset.row), col = parseInt(e.target.dataset.col);
+    const targetCell = e.target.closest('.matrix-cell');
+    if (!targetCell) return;
+    
+    const row = parseInt(targetCell.dataset.row);
+    const col = parseInt(targetCell.dataset.col);
     const oldValue = userMatrix[row][col];
+    
     userMatrix[row][col] = draggedValue;
     availableValues.splice(availableValues.indexOf(draggedValue), 1);
     if (oldValue) availableValues.push(oldValue);
+    
     draggedValue = null;
-    validateMatrix(); updateUI();
+    validateMatrix();
 }
 
 function handleCellClick(e) {
     if (isComplete) return;
-    const row = parseInt(e.target.dataset.row), col = parseInt(e.target.dataset.col);
+    const row = parseInt(e.target.dataset.row);
+    const col = parseInt(e.target.dataset.col);
     const cellValue = userMatrix[row][col];
     if (cellValue) {
         userMatrix[row][col] = "";
         availableValues.push(cellValue);
-        validateMatrix(); updateUI();
+        validateMatrix();
     }
 }
 
